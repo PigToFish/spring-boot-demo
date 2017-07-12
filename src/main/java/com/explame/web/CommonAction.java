@@ -34,10 +34,11 @@ public class CommonAction {
 //        List list = sqlQuery.list();
 //        System.out.printf(list.size()+"");
         try {
+            System.out.println("aaaaaaaaaaaaa");
             response.setContentType("application/json");
             response.setHeader("Cache-Control", "no-cache");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{\"msg\":\"HELLO WORLD\"}");
+            response.getWriter().write("{\"msg\":\"HELLO WORLD 2a\"}");
         } catch (IOException e) {
             e.printStackTrace();
         }
