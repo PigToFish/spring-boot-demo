@@ -27,6 +27,7 @@ public class CommonAction {
     @Resource
     private SessionFactory sessionFactory;
 
+    //http://127.0.0.1:8080/test
     @RequestMapping("test")
     public void test(HttpServletResponse response){
 //        Session session = sessionFactory.getCurrentSession();
@@ -34,7 +35,9 @@ public class CommonAction {
 //        List list = sqlQuery.list();
 //        System.out.printf(list.size()+"");
         try {
-            System.out.println("aaaaaaaaaaaaa");
+            String[] s=new String[3];
+            System.out.println(s[5]);
+            System.out.println("aaaaaa222");
             response.setContentType("application/json");
             response.setHeader("Cache-Control", "no-cache");
             response.setCharacterEncoding("UTF-8");
