@@ -1,16 +1,14 @@
-package com.explame.web;
+package com.example.controller;
 
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import com.example.logic.IStudentLogic;
+import com.example.model.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Author:shenqin
@@ -22,22 +20,18 @@ import java.util.List;
 
 @RestController
 @Transactional
-public class CommonAction {
+public class CommonActionCtrl {
 
-    @Resource
-    private SessionFactory sessionFactory;
+    @Autowired
+    private IStudentLogic studentLogic;
 
     //http://127.0.0.1:8080/test
     @RequestMapping("test")
     public void test(HttpServletResponse response){
-//        Session session = sessionFactory.getCurrentSession();
-//        SQLQuery sqlQuery = session.createSQLQuery("select * from user");
-//        List list = sqlQuery.list();
-//        System.out.printf(list.size()+"");
         try {
-            String[] s=new String[3];
-            System.out.println(s[5]);
             System.out.println("aaaaaa222");
+            Student student=studentLogic.getByNumber(1029);
+            System.out.println(student.toString());
             response.setContentType("application/json");
             response.setHeader("Cache-Control", "no-cache");
             response.setCharacterEncoding("UTF-8");

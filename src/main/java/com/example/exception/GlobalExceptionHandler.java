@@ -1,8 +1,9 @@
-package com.explame.exception;
+package com.example.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,13 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-
+        private static Logger LOG= LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 //    @ExceptionHandler(RuntimeException.class)
 //    @ResponseBody //在返回自定义相应类的情况下必须有，这是@ControllerAdvice注解的规定
     @ExceptionHandler
-    public String exceptionHandler(RuntimeException e, HttpServletResponse response) {
+    public String exceptionHandler(Exception e, HttpServletResponse response) {
         System.out.println("---------exception-------");
+        LOG.warn(e.getMessage(),e);
         return "exception";
     }
 }
