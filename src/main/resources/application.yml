@@ -7,6 +7,16 @@ spring:
         url: jdbc:mysql://localhost:3306/spring_test
         username: root
         password: root
+    redis:
+        host:
+        password:
+        port: 7480
+        database: 7
+        pool:
+          max-idle: 100
+          min-idle: 1
+          max-active: 1000
+          max-wait: -1
 
 mybatis:
     typeAliasesPackage: com.example.model

@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.logic.IStudentLogic;
 import com.example.model.Student;
+import com.example.redis.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,9 @@ public class CommonActionCtrl {
     @Autowired
     private IStudentLogic studentLogic;
 
+    @Autowired
+    private RedisService redisService;
+
     //http://127.0.0.1:8080/test
     @RequestMapping("test")
     public void test(HttpServletResponse response){
@@ -36,6 +40,20 @@ public class CommonActionCtrl {
             response.setHeader("Cache-Control", "no-cache");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{\"msg\":\"HELLO WORLD 2a\"}");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping("testRedis")
+    public void testRedis(HttpServletResponse response){
+        try {
+            redisService.set("sq","23");
+            System.out.println(redisService.get("sq"));
+            response.setContentType("application/json");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{\"msg\":\"HELLO WORLD redis\"}");
         } catch (IOException e) {
             e.printStackTrace();
         }
